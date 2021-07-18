@@ -9,17 +9,11 @@ const InitializationComp = () =>
 
   useEffect(async () =>
   {
-    // const moviesCollection = firebase.firestore().collection('Movies').get();
-    
-    // if(!moviesCollection.exists){
-    //   console.log("No exists!")
-    // }
-    // else{
-    //   console.log("We Have Data Base!")
-    // }
 
     let resp = await axios.get("https://api.tvmaze.com/shows");
     let allMovies = resp.data;
+
+    console.log(allMovies)
 
     allMovies.forEach(movie => {
 

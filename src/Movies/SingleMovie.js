@@ -75,7 +75,7 @@ const MovieComp = (props) => {
 
 
   return (
-    <div>
+    <div className="item">
 
       <h3>{movie.name} , {movie.year} </h3>
 

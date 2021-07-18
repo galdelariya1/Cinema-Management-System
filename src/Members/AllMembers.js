@@ -11,14 +11,6 @@ const AllMembersComp = () => {
 
   useEffect( () => 
   {
-    const moviesCollection = firebase.firestore().collection('Movies').get();
-    
-    if(moviesCollection.exists){
-      console.log("exists!")
-    }
-    else{
-      console.log("No Exsits!")
-    }
 
     firebase.firestore().collection('Members').get()
     .then(data => 

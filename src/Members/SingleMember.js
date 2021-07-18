@@ -103,7 +103,7 @@ const SingleMemberComp = (props) => {
 
 
   return (
-    <div>
+    <div className="item">
 
         <h3>{member.name} </h3>
 

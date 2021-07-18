@@ -45,7 +45,6 @@ const LogInPageComp = () =>
     }
 
     let userToLogIn = users.find(user => user.userName === userName)
-    console.log(userToLogIn)
     
     if(userToLogIn) {
       if(userToLogIn.password === password){

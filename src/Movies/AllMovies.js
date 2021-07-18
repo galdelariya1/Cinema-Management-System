@@ -34,7 +34,9 @@ const AllMoviesComp = () => {
 
         let newAllMovies = allMovies.filter(x => x.id !== movieId)
 
+        setFilteredMovies(newAllMovies);
         setMovies(newAllMovies);
+        
 
   }
 

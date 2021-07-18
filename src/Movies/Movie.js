@@ -20,6 +20,7 @@ const MovieComp = (props) => {
   useEffect(() => {
 
     setId(props.id)
+
     firebase.firestore().collection('Users').doc(sessionStorage["loginUserId"]).get()
       .then(userData => {
         if(userData.data().booleansPermissions[6]){
@@ -37,7 +38,7 @@ const MovieComp = (props) => {
     firebase.firestore().collection('Movies').doc(props.id).get()
       .then(movieInitial => {
         let movieData = movieInitial.data()
-        movieData.id = id;
+        movieData.id = props.id;
         movieData.image = movieInitial.data().image.original;
         movieData.year = movieInitial.data().premiered.slice(0,4)
         movieData.genresString = movieInitial.data().genres.toString()

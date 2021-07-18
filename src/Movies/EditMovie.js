@@ -13,7 +13,6 @@ const EditMovieComp = (props) =>
 
   useEffect( () => 
   {
-    console.log(id)
     firebase.firestore().collection('Movies').doc(id).get()
       .then(movieToSet => {
       
