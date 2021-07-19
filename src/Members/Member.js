@@ -111,11 +111,11 @@ const MemberComp = (props) => {
 
         <h3>{member.name} </h3>
         
-        Email : {member.email} <br />
-        City : {city} <br/><br/>
+        Email : {member.email} <br/>
+        City : {city}
 
         {editButton}
-        {deleteButton} <br/><br/>
+        {deleteButton}
 
         {moviesHeader}
 
@@ -134,7 +134,7 @@ const MemberComp = (props) => {
           }
         </ul>
 
-        <input type="button" className = "low-button" value="Subscribe to new movie" onClick={subscribe} /> <br/><br/>
+        <input type="button" className = "low-button" value="Subscribe to new movie" onClick={subscribe} />
 
         {subscribeComp}
 

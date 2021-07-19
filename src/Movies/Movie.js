@@ -84,7 +84,7 @@ const MovieComp = (props) => {
 
         <h4> Genres: {movie.genresString} </h4>
 
-        <img width = "250" height = "250" src={movie.image} /> <br/><br/>
+        <img width = "250" height = "250" src={movie.image} /> 
 
         {subscriptionsHeader}
 
@@ -106,10 +106,9 @@ const MovieComp = (props) => {
         
             </ul>
 
-          {deleteButton}
           {editButton}
-
-
+          {deleteButton}
+        
     </div>
   );
 }

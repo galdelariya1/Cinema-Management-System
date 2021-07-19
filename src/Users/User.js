@@ -38,16 +38,18 @@ const UserComp = (props) => {
 
 
   return (
-    <div>
+    <div className="item">
 
-        Name : {user.name} <br/> 
-        User Name : {user.userName} <br/>
-        Session Time Out (Minutes) : {user.sessionTimeOut} <br/>
-        Created Date : {user.createdDate} <br/>
-        Permissions : {user.permissions} <br/>
+        <div className = "text"> 
+          Name : {user.name} <br/> 
+          User Name : {user.userName} <br/>
+          Session Time Out (Minutes) : {user.sessionTimeOut} <br/>
+          Created Date : {user.createdDate} <br/>
+          Permissions : {user.permissions}
+        </div>
 
         <input type="button" className = "low-button" value="Edit" onClick={editUser} /> 
-        <input type="button" className = "low-button" value="Delete" onClick={deleteUser} /> <br /><br />
+        <input type="button" className = "low-button" value="Delete" onClick={deleteUser} />
 
 
     </div>
