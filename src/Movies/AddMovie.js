@@ -32,10 +32,10 @@ const AddMovieComp = (props) =>
   return (
     <div>
 
-       Name : <input type="text" onChange={e => setName(e.target.value)} /><br/>
-      Genres : <input type="text" onChange={e => setGenres(e.target.value)} /><br/>
-      Image Url : <input type="text" onChange={e => setImageUrl(e.target.value)} /><br/>
-      Premiered : <input type="text" onChange={e => setPremiered(e.target.value)} /><br/><br/>
+       Name : <input type="text" className = "inputhBar" onChange={e => setName(e.target.value)} /><br/>
+      Genres : <input type="text" className = "inputhBar" onChange={e => setGenres(e.target.value)} /><br/>
+      Image Url : <input type="text" className = "inputhBar" onChange={e => setImageUrl(e.target.value)} /><br/>
+      Premiered : <input type="text" className = "inputhBar" onChange={e => setPremiered(e.target.value)} /><br/><br/>
 
       <input type="button" className = "low-button" value="save" onClick={save} />
       <input type="button" className = "low-button" value="cancel" onClick={cancel} />

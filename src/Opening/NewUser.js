@@ -61,11 +61,11 @@ const NewUserComp = () =>
       
       <h3> Creat An Account</h3> 
 
-      User Name : <input type="text" onChange={e => setUserName(e.target.value)} /><br/>
-      Password : <input type="text" onChange={e => setPassword(e.target.value)} /><br/><br/>
+      <input type="text" className = "inputhBar" placeholder="User Name" onChange={e => setUserName(e.target.value)} />
+      <input type="text" className = "inputhBar" placeholder="Password" onChange={e => setPassword(e.target.value)} /><br/><br/>
 
-      <input type="button" value="Creat" onClick={creat} /> 
-      <input type="button" value="Cancel" onClick={cancel} /> <br/><br/>
+      <input type="button" className = "mid-button" value="Creat" onClick={creat} /> 
+      <input type="button" className = "mid-button" value="Cancel" onClick={cancel} /> <br/><br/>
 
     </div>
   );

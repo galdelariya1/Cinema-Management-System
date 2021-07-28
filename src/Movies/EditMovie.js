@@ -53,10 +53,10 @@ const EditMovieComp = (props) =>
 
       <h3> Edit Movie : {props.name}</h3>
 
-      Name : <input type="text" value= {name} onChange={e => setName(e.target.value)} /><br/>
-      Genres : <input type="text" value= {genres} onChange={e => setGenres(e.target.value)} /><br/>
-      Image Url : <input type="text" value= {image} onChange={e => setImage(e.target.value)} /><br/>
-      Premiered : <input type="text" value= {premiered} onChange={e => setPremiered(e.target.value)} /><br/><br/>
+      Name : <input type="text" className = "inputhBar" value= {name} onChange={e => setName(e.target.value)} /><br/>
+      Genres : <input type="text" className = "inputhBar" value= {genres} onChange={e => setGenres(e.target.value)} /><br/>
+      Image Url : <input type="text" className = "inputhBar" value= {image} onChange={e => setImage(e.target.value)} /><br/>
+      Premiered : <input type="text" className = "inputhBar" value= {premiered} onChange={e => setPremiered(e.target.value)} /><br/><br/>
 
       <input type="button" className = "low-button" value="update" onClick={update} />
       <input type="button" className = "low-button" value="cancel" onClick={cancel} />

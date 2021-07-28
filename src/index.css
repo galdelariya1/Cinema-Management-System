@@ -32,7 +32,7 @@ li {
   align-items: center;
   justify-content: center;
   font-family: sans-serif;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .app-container{
@@ -53,10 +53,23 @@ li {
   padding: 16px;
   margin: 16px;
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   background-color: rgb(254, 255, 244);
   border-radius: 10px;
   align-items: center;
+}
+
+.subscribe{
+  padding: 16px;
+  margin: 16px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: rgb(248, 252, 203);
+  border-radius: 10px;
+  align-items: center;
+  height: 340px;
 }
 
 .text {
@@ -105,8 +118,7 @@ input[type='button'] , input[type='submit']{
 
 .top-button {
   background-color: #90caf9da;
-  font-size: 18px;
-  
+  font-size: 20px;
 }
 
 .mid-button , input[type='submit'] {
@@ -126,7 +138,7 @@ select{
   padding: 12px 16px;
   border: none;
   border-radius: 8px;
-  background-color: #f1f1f1;
+  background-color: #ffda8983;
   display: flex;
 
 }
@@ -136,7 +148,7 @@ input[type='datetime-local']{
   padding: 12px 16px;
   border: none;
   border-radius: 2px;
-  background-color: #f1f1f1;
+  background-color: #ffda8983;
 }
 
 .login {

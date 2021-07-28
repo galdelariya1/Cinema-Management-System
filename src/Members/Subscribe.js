@@ -66,9 +66,9 @@ const SubscribeComp = (props) => {
   }
 
   return (
-    <div>
+    <div className = "subscribe">
 
-      Add a new movie <br /><br />
+      <h4> Add a new movie </h4>
 
       <select onClick={e => setMovieToSubscribe(e.target.value)}>
         {
@@ -77,9 +77,8 @@ const SubscribeComp = (props) => {
           })
         }
       </select>
-      <br />
 
-      <input type="datetime-local" onChange={e => setDate(e.target.value)} /> <br/><br/>
+      <input type="datetime-local" onChange={e => setDate(e.target.value)} />
 
       <input type="button" className = "low-button" value="Subscribe" onClick={subscribe} />
 

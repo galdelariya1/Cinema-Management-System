@@ -111,9 +111,9 @@ const EditUserComp = (props) =>
 
       <form onSubmit={e => customSubmit(e)}>
 
-          Name : <input type="text" value= {name} onChange={e => setName(e.target.value)} /><br/>
-          User Name : <input type="text" value= {userName} onChange={e => setUserName(e.target.value)} /><br/>
-          Session Time Out (Minutes) : <input type="text" value= {sessionTimeOut} onChange={e => setSessionTimeOut(e.target.value)} /><br/>
+          Name : <input type="text" className = "inputhBar" value= {name} onChange={e => setName(e.target.value)} /><br/>
+          User Name : <input type="text" className = "inputhBar" value= {userName} onChange={e => setUserName(e.target.value)} /><br/>
+          Session Time Out (Minutes) : <input type="text" className = "inputhBar" value= {sessionTimeOut} onChange={e => setSessionTimeOut(e.target.value)} /><br/>
           Persmissions: <br/>
           View Subscriptions <input type="checkbox" checked ={viewSubscriptions} onChange={e => setViewSubscriptions(e.target.checked)} /> <br/>
           Create Subscriptions <input type="checkbox" checked ={createSubscriptions} onChange={e => {setCreateSubscriptions(e.target.checked)
@@ -130,11 +130,11 @@ const EditUserComp = (props) =>
           Update Movies <input type="checkbox" checked ={updateMovies} onChange={e => {setUpdateMovies(e.target.checked)
                                                                 setViewMovies(e.target.checked)}} /> <br/>
           
-          <input type="submit" value="update" />
+          <input type="submit" className = "low-button" value="update" />
 
       </form>
 
-      <input type="button" value="cancel" onClick={cancel} />
+      <input type="button" className = "mid-button" value="cancel" onClick={cancel} />
 
     </div>
   );

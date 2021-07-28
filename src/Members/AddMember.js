@@ -29,9 +29,9 @@ const AddMemberComp = (props) =>
   return (
     <div>
 
-      Name : <input type="text" onChange={e => setName(e.target.value)} /><br/>
-      Email : <input type="text" onChange={e => setEmail(e.target.value)} /><br/>
-      City : <input type="text" onChange={e => setCity(e.target.value)} /><br/>
+      Name : <input type="text" className = "inputhBar" onChange={e => setName(e.target.value)} /><br/>
+      Email : <input type="text" className = "inputhBar" onChange={e => setEmail(e.target.value)} /><br/>
+      City : <input type="text" className = "inputhBar" onChange={e => setCity(e.target.value)} /><br/>
 
       <input type="button" className = "low-button" value="save" onClick={save} />
       <input type="button" className = "low-button" value="cancel" onClick={cancel} />

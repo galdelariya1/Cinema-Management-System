@@ -94,10 +94,10 @@ const AddUserComp = (props) =>
 
       <form onSubmit={e => customSubmit(e)}>
 
-          Name : <input type="text" onChange={e => setName(e.target.value)} /><br/>
-          User Name : <input type="text" onChange={e => setUserName(e.target.value)} /><br/>
-          Session Time Out (Minutes) : <input type="text" onChange={e => setSessionTimeOut(e.target.value)} /><br/><br/>
-          Persmissions: <br/>
+          Name : <input type="text" className = "inputhBar" onChange={e => setName(e.target.value)} /><br/>
+          User Name : <input type="text" className = "inputhBar" onChange={e => setUserName(e.target.value)} /><br/>
+          Session Time Out (Minutes) : <input type="text" className = "inputhBar" onChange={e => setSessionTimeOut(e.target.value)} /><br/><br/>
+          <h4> Persmissions </h4> 
           View Subscriptions <input type="checkbox" checked ={viewSubscriptions} onChange={e => setViewSubscriptions(e.target.checked)} /> <br/>
           Create Subscriptions <input type="checkbox" onChange={e => {setCreateSubscriptions(e.target.checked)
                                                                       setViewSubscriptions(e.target.checked)}} /> <br/>
@@ -116,7 +116,7 @@ const AddUserComp = (props) =>
           <input type="submit" value="save" />
       </form>
 
-      <input type="button"  className = "low-button" value="cancel" onClick={cancel} />
+      <input type="button"  className = "mid-button" value="cancel" onClick={cancel} />
 
     </div>
   );
