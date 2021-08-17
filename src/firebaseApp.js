@@ -3,13 +3,13 @@ import 'firebase/firestore'
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAYw-yt_caKRvTZZMczViNR5tQE22gyIjg",
-  authDomain: "management-system-611bc.firebaseapp.com",
-  projectId: "management-system-611bc",
-  storageBucket: "management-system-611bc.appspot.com",
-  messagingSenderId: "975199963226",
-  appId: "1:975199963226:web:39ec7e9e1cabed35027063",
-  measurementId: "G-FMHB9PFGK2"
+  apiKey: "AIzaSyCye9IlcfOMWZ9ujZ9KaqPifU0IL61ZOjs",
+  authDomain: "cinema-management-system-4ea0c.firebaseapp.com",
+  projectId: "cinema-management-system-4ea0c",
+  storageBucket: "cinema-management-system-4ea0c.appspot.com",
+  messagingSenderId: "100501815736",
+  appId: "1:100501815736:web:6bffa7fff3752a02028f4d",
+  measurementId: "G-BST71VZFPM"
 };
 
 
