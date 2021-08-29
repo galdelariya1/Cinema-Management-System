@@ -4,7 +4,7 @@ import {useState, useEffect} from 'react';
 const EditMemberComp = (props) => 
 {
 
-  const [id] = useState(props.match.params.id)
+  const id = props.match.params.id
   const[member, setMember] = useState({})
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")

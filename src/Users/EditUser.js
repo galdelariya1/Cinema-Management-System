@@ -5,7 +5,7 @@ import { useRouteMatch } from 'react-router-dom';
 const EditUserComp = (props) => 
 {
 
-  const [id] = useState(props.match.params.id)
+  const id = props.match.params.id
   const[user, setUser] = useState({})
   const [name, setName] = useState("")
   const [userName, setUserName] = useState("")
@@ -41,7 +41,7 @@ const EditUserComp = (props) =>
 
   }, [])
 
-  const customSubmit = async (e) =>
+  const customSubmit = (e) =>
   {
     //Prevdet the browser from being rendered again !!
     e.preventDefault();

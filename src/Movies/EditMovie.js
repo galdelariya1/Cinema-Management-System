@@ -4,7 +4,7 @@ import {useState, useEffect} from 'react';
 const EditMovieComp = (props) => 
 {
 
-  const [id] = useState(props.match.params.id)
+  const id = props.match.params.id;
   const [movie, setMovie] = useState({})
   const [name, setName] = useState("")
   const [genres, setGenres] = useState([])
