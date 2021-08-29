@@ -143,7 +143,3 @@ const EditUserComp = (props) =>
 export default EditUserComp;
 
 
-/*
-
-
-          */
