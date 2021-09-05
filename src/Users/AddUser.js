@@ -7,14 +7,10 @@ const AddUserComp = (props) =>
   const [name, setName] = useState('')
   const [userName, setUserName] = useState('')
   const [sessionTimeOut, setSessionTimeOut] = useState('')
-  const [viewSubscriptions, setViewSubscriptions] = useState(false)
-  const [createSubscriptions, setCreateSubscriptions] = useState(false)
-  const [deleteSubscriptions, setDeleteSubscriptions] = useState(false)
-  const [updateSubscriptions, setUpdateSubscriptions] = useState(false)
-  const [viewMovies, setViewMovies] = useState(false)
-  const [createMovies, setCreateMovies] = useState(false)
-  const [deleteMovies, setDeleteMovies] = useState(false)
-  const [updateMovies, setUpdateMovies] = useState(false)
+  const [permissions, setPermissions] = useState({"View Subscriptions" : false, "Create Subscriptions" : false,
+                                                  "Update Subscriptions" : false, "Delete Subscriptions" : false,
+                                                  "View Movies" : false, "Create Movies" : false,
+                                                  "Update Movies" : false, "Delete Movies" : false})
 
 
   const customSubmit = async (e) =>
@@ -22,58 +18,10 @@ const AddUserComp = (props) =>
     //Prevdet the browser from being rendered again !!
     e.preventDefault();
 
-    let permissions = [];
-
-    var booleans = [];    
-    for (var i = 0; i < 8; i++) {
-      booleans.push(false);
-    }
-
-    if(viewSubscriptions){
-      booleans[0] = true;
-      permissions.push("View Subscription ")
-    }
-
-    if(createSubscriptions){
-      booleans[1] = true;
-      permissions.push("Create Subscription ")
-    }
-
-    if(deleteSubscriptions){
-      booleans[2] = true;
-      permissions.push("Delete Subscription ")
-    }
-
-    if(updateSubscriptions){
-      booleans[3] = true;
-      permissions.push("Update Subscription ")
-    }
-
-    if(viewMovies){
-      booleans[4] = true;
-      permissions.push("View Movies ")
-    }
-
-    if(createMovies){
-      booleans[5] = true;
-      permissions.push("Create Movies ")
-    }
-
-    if(deleteMovies){
-      booleans[6] = true;
-      permissions.push("Delete Movies ")
-    }
-
-    if(updateMovies){
-      booleans[7] = true;
-      permissions.push("update Movies")
-    }
-
     let today = new Date().toISOString().slice(0, 10)
 
     //data shaping
-    let obj = {name, userName, "password" : "", sessionTimeOut, createdDate : today,
-                booleansPermissions : booleans, stringPermissions : permissions}
+    let obj = {name, userName, "password" : "", sessionTimeOut, createdDate : today, permissions}
 
     firebase.firestore().collection('Users').add(obj)
     .then(()=>
@@ -94,25 +42,27 @@ const AddUserComp = (props) =>
 
       <form onSubmit={e => customSubmit(e)}>
 
-          Name : <input type="text" className = "inputhBar" onChange={e => setName(e.target.value)} /><br/>
-          User Name : <input type="text" className = "inputhBar" onChange={e => setUserName(e.target.value)} /><br/>
-          Session Time Out (Minutes) : <input type="text" className = "inputhBar" onChange={e => setSessionTimeOut(e.target.value)} /><br/><br/>
-          <h4> Persmissions </h4> 
-          View Subscriptions <input type="checkbox" checked ={viewSubscriptions} onChange={e => setViewSubscriptions(e.target.checked)} /> <br/>
-          Create Subscriptions <input type="checkbox" onChange={e => {setCreateSubscriptions(e.target.checked)
-                                                                      setViewSubscriptions(e.target.checked)}} /> <br/>
-          Delete Subscriptions <input type="checkbox" onChange={e => {setDeleteSubscriptions(e.target.checked)
-                                                                      setViewSubscriptions(e.target.checked)}} /> <br/>
-          Update Subscriptions <input type="checkbox" onChange={e => {setUpdateSubscriptions(e.target.checked)
-                                                                      setViewSubscriptions(e.target.checked)}} /> <br/>
-          View Movies <input type="checkbox" checked ={viewMovies} onChange={e => setViewMovies(e.target.checked)} /> <br/>
-          Create Movies <input type="checkbox" onChange={e => {setCreateMovies(e.target.checked)
-                                                                setViewMovies(e.target.checked)}} /> <br/>
-          Delete Movies <input type="checkbox" onChange={e => {setDeleteMovies(e.target.checked)
-                                                                setViewMovies(e.target.checked)}} /> <br/>
-          Update Movies <input type="checkbox" onChange={e => {setUpdateMovies(e.target.checked)
-                                                                setViewMovies(e.target.checked)}} /> <br/>
+          Name : <input type="text" className = "inputhBar" onChange={e => setName(e.target.value)} />
+          User Name : <input type="text" className = "inputhBar" onChange={e => setUserName(e.target.value)} />
+          Session Time Out (Minutes) : <input type="text" className = "inputhBar" onChange={e => setSessionTimeOut(e.target.value)} />
 
+          <h4> Persmissions </h4> 
+
+          {
+              Object.keys(permissions).map( permis => {
+
+              return <div>
+                     {permis} <input type="checkbox" onChange={e => {
+                        let newPremissions = {...permissions}
+                        newPremissions[permis] = e.target.checked
+                        setPermissions(newPremissions)
+                      }} /> <br/>
+                    </div>
+          })
+          
+          }
+
+          <br/>
           <input type="submit" value="save" />
       </form>
 

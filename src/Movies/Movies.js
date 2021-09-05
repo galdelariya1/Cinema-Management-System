@@ -16,7 +16,7 @@ const MoviesComp = (props) =>
 
     firebase.firestore().collection('Users').doc(sessionStorage["loginUserId"]).get()
       .then(userData => {
-        if(userData.data().booleansPermissions[5]){
+        if(userData.data().permissions['Create Movies']){
           setAddMovieButton(<input type="button" className = "mid-button" value="Add Movie" onClick={addMovie} />)
         }
       })

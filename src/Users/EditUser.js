@@ -10,14 +10,7 @@ const EditUserComp = (props) =>
   const [name, setName] = useState("")
   const [userName, setUserName] = useState("")
   const [sessionTimeOut, setSessionTimeOut] = useState("")
-  const [viewSubscriptions, setViewSubscriptions] = useState(false)
-  const [createSubscriptions, setCreateSubscriptions] = useState(false)
-  const [deleteSubscriptions, setDeleteSubscriptions] = useState(false)
-  const [updateSubscriptions, setUpdateSubscriptions] = useState(false)
-  const [viewMovies, setViewMovies] = useState(false)
-  const [createMovies, setCreateMovies] = useState(false)
-  const [deleteMovies, setDeleteMovies] = useState(false)
-  const [updateMovies, setUpdateMovies] = useState(false)
+  const [permissions, setPermissions] = useState({})
 
   useEffect(() => {
 
@@ -27,16 +20,7 @@ const EditUserComp = (props) =>
         setName(user.data().name)
         setUserName(user.data().userName)
         setSessionTimeOut(user.data().sessionTimeOut)
-
-        let userBooleansPermissions = user.data().booleansPermissions;
-        setViewSubscriptions(userBooleansPermissions[0])
-        setCreateSubscriptions(userBooleansPermissions[1])
-        setDeleteSubscriptions(userBooleansPermissions[2])
-        setUpdateSubscriptions(userBooleansPermissions[3])
-        setViewMovies(userBooleansPermissions[4])
-        setCreateMovies(userBooleansPermissions[5])
-        setDeleteMovies(userBooleansPermissions[6])
-        setUpdateMovies(userBooleansPermissions[7])
+        setPermissions(user.data().permissions)
       })
 
   }, [])
@@ -46,49 +30,7 @@ const EditUserComp = (props) =>
     //Prevdet the browser from being rendered again !!
     e.preventDefault();
 
-    let booleans = [viewSubscriptions, createSubscriptions, deleteSubscriptions, updateSubscriptions,
-                   viewMovies, createMovies, deleteMovies, updateMovies]
-
-    let permissions = [];
-
-    if(viewSubscriptions || createSubscriptions || deleteSubscriptions || updateSubscriptions){
-      permissions.push("View Subscription ")
-    }
-
-    if(createSubscriptions){
-      permissions.push("Create Subscription ")
-    }
-
-    if(deleteSubscriptions){
-      permissions.push("Delete Subscription ")
-    }
-
-    if(updateSubscriptions){
-      permissions.push("Update Subscription ")
-    }
-
-    if(viewMovies || createMovies || deleteMovies || updateMovies){
-      permissions.push("View Movies ")
-    }
-
-    if(createMovies){
-      permissions.push("Create Movies ")
-    }
-
-    if(deleteMovies){
-      permissions.push("Delete Movies ")
-    }
-
-    if(updateMovies){
-      permissions.push("update Movies")
-    }
-
-    let updatedUser = {...user}
-    updatedUser.name = name;
-    updatedUser.userName = userName;
-    updatedUser.sessionTimeOut = sessionTimeOut;
-    updatedUser.booleansPermissions = booleans;
-    updatedUser.stringPermissions = permissions;
+    let updatedUser = {...user, name, userName, sessionTimeOut, permissions}
 
     firebase.firestore().collection('Users').doc(id)
     .set(updatedUser)
@@ -111,25 +53,27 @@ const EditUserComp = (props) =>
 
       <form onSubmit={e => customSubmit(e)}>
 
-          Name : <input type="text" className = "inputhBar" value= {name} onChange={e => setName(e.target.value)} /><br/>
-          User Name : <input type="text" className = "inputhBar" value= {userName} onChange={e => setUserName(e.target.value)} /><br/>
-          Session Time Out (Minutes) : <input type="text" className = "inputhBar" value= {sessionTimeOut} onChange={e => setSessionTimeOut(e.target.value)} /><br/>
-          Persmissions: <br/>
-          View Subscriptions <input type="checkbox" checked ={viewSubscriptions} onChange={e => setViewSubscriptions(e.target.checked)} /> <br/>
-          Create Subscriptions <input type="checkbox" checked ={createSubscriptions} onChange={e => {setCreateSubscriptions(e.target.checked)
-                                                                      setViewSubscriptions(e.target.checked)}} /> <br/>
-          Delete Subscriptions <input type="checkbox" checked ={deleteSubscriptions} onChange={e => {setDeleteSubscriptions(e.target.checked)
-                                                                      setViewSubscriptions(e.target.checked)}} /> <br/>
-          Update Subscriptions <input type="checkbox" checked ={updateSubscriptions} onChange={e => {setUpdateSubscriptions(e.target.checked)
-                                                                      setViewSubscriptions(e.target.checked)}} /> <br/>
-          View Movies <input type="checkbox" checked ={viewMovies} onChange={e => setViewMovies(e.target.checked)} /> <br/>
-          Create Movies <input type="checkbox" checked ={createMovies} onChange={e => {setCreateMovies(e.target.checked)
-                                                                setViewMovies(e.target.checked)}} /> <br/>
-          Delete Movies <input type="checkbox" checked ={deleteMovies} onChange={e => {setDeleteMovies(e.target.checked)
-                                                                setViewMovies(e.target.checked)}} /> <br/>
-          Update Movies <input type="checkbox" checked ={updateMovies} onChange={e => {setUpdateMovies(e.target.checked)
-                                                                setViewMovies(e.target.checked)}} /> <br/>
+          Name : <input type="text" className = "inputhBar" value= {name} onChange={e => setName(e.target.value)} />
+          User Name : <input type="text" className = "inputhBar" value= {userName} onChange={e => setUserName(e.target.value)} />
+          Session Time Out (Minutes) : <input type="text" className = "inputhBar" value= {sessionTimeOut} onChange={e => setSessionTimeOut(e.target.value)} />
           
+          <h4> Persmissions </h4> 
+
+          {
+              Object.keys(permissions).map( permis => {
+
+              return <div>
+                     {permis} <input type="checkbox" checked ={permissions[permis]} 
+                      onChange={e => {
+                        let newPremissions = {...permissions}
+                        newPremissions[permis] = e.target.checked
+                        setPermissions(newPremissions)
+                      }} /> <br/>
+                    </div>
+          })
+          
+          }
+          <br/>
           <input type="submit" className = "low-button" value="update" />
 
       </form>

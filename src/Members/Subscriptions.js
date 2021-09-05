@@ -15,7 +15,7 @@ const SubscriptionsComp = (props) =>
 
     firebase.firestore().collection('Users').doc(sessionStorage["loginUserId"]).get()
       .then(userData => {
-        if(userData.data().booleansPermissions[1]){
+        if(userData.data().permissions['Create Subscriptions']){
           setAddMemberButton(<input type="button" className = "mid-button" value="Add Member" onClick={addMember} />)
         }
       })

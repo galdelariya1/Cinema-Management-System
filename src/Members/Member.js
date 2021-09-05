@@ -26,13 +26,13 @@ const MemberComp = (props) => {
 
     firebase.firestore().collection('Users').doc(sessionStorage["loginUserId"]).get()
     .then(userData => {
-      if(userData.data().booleansPermissions[2]){
+      if(userData.data().permissions['Delete Subscriptions']){
         setDeleteButton(<input type="button" className = "low-button" value="Delete" onClick={deleteMember} />)
       }
-      if(userData.data().booleansPermissions[3]){
+      if(userData.data().permissions['Edit Subscriptions']){
         setEditButton(<input type="button" className = "low-button" value="Edit" onClick={editMember} />)
       }
-      if(userData.data().booleansPermissions[4]){
+      if(userData.data().permissions['View Movies']){
         setMoviePermission(true)
       }
 

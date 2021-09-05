@@ -36,9 +36,10 @@ const InitializationComp = () =>
 
     let sysAdminUser = {"name" : "sysAdmin", "userName" : "sysAdmin", "password" : "SysAdmin135",
                        "sessionTimeOut" : "1000", "createdDate" : "2000-00-00",
-                        "stringPermissions" : ["View Subscription ", "Create Subscription ", "Delete Subscription ", "Update Subscription ",
-                                                "View Movies ", "Create Movies ", "Delete Movies ", "update Movies"],
-                        "booleansPermissions" : [true, true, true, true, true, true, true, true]};
+                        "permissions" : {"View Subscriptions" : true, "Create Subscriptions" : true,
+                                        "Update Subscriptions" : true, "Delete Subscriptions" : true,
+                                        "View Movies" : true, "Create Movies" : true,
+                                        "Update Movies" : true, "Delete Movies" : true}};
 
     firebase.firestore().collection('Users').add(sysAdminUser)
 

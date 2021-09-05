@@ -9,15 +9,10 @@ import InitializationComp from './Opening/Initialization'
 const HeaderComp = () =>
 {
 
-  /*       
-      <InitializationComp /> 
-
-  */
-  
-
-
   return (
     <div className = "app-container">
+
+      {/* <InitializationComp />  */}
 
       <h1 className = "main-header"> Movies - Subscription Web Site </h1>
 

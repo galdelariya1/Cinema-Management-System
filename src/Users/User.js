@@ -16,7 +16,14 @@ const UserComp = (props) => {
       .then(user => {
         let userData = user.data()
         userData.id = props.id;
-        userData.permissions = user.data().stringPermissions.toString();
+
+        let permissionsString = [];
+        for (let key in user.data().permissions){
+            if (user.data().permissions[key]){
+              permissionsString.push(" " + key)
+            }
+        }
+        userData.permissionsString = permissionsString.toString();
         setUser(userData);
       })
   },[])
@@ -45,7 +52,7 @@ const UserComp = (props) => {
           User Name : {user.userName} <br/>
           Session Time Out (Minutes) : {user.sessionTimeOut} <br/>
           Created Date : {user.createdDate} <br/>
-          Permissions : {user.permissions}
+          Permissions : {user.permissionsString}
         </div>
 
         <input type="button" className = "low-button" value="Edit" onClick={editUser} /> 

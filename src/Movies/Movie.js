@@ -23,14 +23,14 @@ const MovieComp = (props) => {
 
     firebase.firestore().collection('Users').doc(sessionStorage["loginUserId"]).get()
       .then(userData => {
-        if(userData.data().booleansPermissions[6]){
+        if(userData.data().permissions['Delete Movies']){
           setDeleteButton(<input type="button" className = "low-button" value="Delete" onClick={deleteMovie} />)
         }
-        if(userData.data().booleansPermissions[7]){
+        if(userData.data().permissions['Edit Movies']){
           setEditButton(<input type="button" className = "low-button" value="Edit" onClick={editMovie} />)
         }
 
-        if(userData.data().booleansPermissions[0]){
+        if(userData.data().permissions['View Subscriptions']){
           setMemberPermission(true)
         }
     })

@@ -24,11 +24,11 @@ const MainPageComp = (props) =>
               setUsersManagementButton(<input type="button" className = "top-button" value="Users Management" onClick={userManagement} />)
             }
 
-            if(userData.data().booleansPermissions[4]){
+            if(userData.data().permissions['View Movies']){
               setMoviesButton(<input type="button" className = "top-button" value="Movies" onClick={movies} />)
             }
 
-            if(userData.data().booleansPermissions[0]){
+            if(userData.data().permissions['View Subscriptions']){
               setSubscriptionsButton(<input type="button" className = "top-button" value="Subscriptions" onClick={subscriptions} />)
             }
    
