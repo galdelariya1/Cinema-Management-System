@@ -55,7 +55,8 @@ const EditUserComp = (props) =>
 
           Name : <input type="text" className = "inputhBar" value= {name} onChange={e => setName(e.target.value)} />
           User Name : <input type="text" className = "inputhBar" value= {userName} onChange={e => setUserName(e.target.value)} />
-          Session Time Out (Minutes) : <input type="text" className = "inputhBar" value= {sessionTimeOut} onChange={e => setSessionTimeOut(e.target.value)} />
+          Session Time Out (Minutes) : <input type="text" className = "inputhBar" value= {sessionTimeOut} 
+                                        onChange={e => setSessionTimeOut(e.target.value)} />
           
           <h4> Persmissions </h4> 
 

@@ -13,8 +13,6 @@ const InitializationComp = () =>
     let resp = await axios.get("https://api.tvmaze.com/shows");
     let allMovies = resp.data;
 
-    console.log(allMovies)
-
     allMovies.forEach(movie => {
 
       movie.subscriptions = [];

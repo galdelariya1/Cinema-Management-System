@@ -26,7 +26,7 @@ const MovieComp = (props) => {
         if(userData.data().permissions['Delete Movies']){
           setDeleteButton(<input type="button" className = "low-button" value="Delete" onClick={deleteMovie} />)
         }
-        if(userData.data().permissions['Edit Movies']){
+        if(userData.data().permissions['Update Movies']){
           setEditButton(<input type="button" className = "low-button" value="Edit" onClick={editMovie} />)
         }
 

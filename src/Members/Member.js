@@ -29,7 +29,7 @@ const MemberComp = (props) => {
       if(userData.data().permissions['Delete Subscriptions']){
         setDeleteButton(<input type="button" className = "low-button" value="Delete" onClick={deleteMember} />)
       }
-      if(userData.data().permissions['Edit Subscriptions']){
+      if(userData.data().permissions['Update Subscriptions']){
         setEditButton(<input type="button" className = "low-button" value="Edit" onClick={editMember} />)
       }
       if(userData.data().permissions['View Movies']){
