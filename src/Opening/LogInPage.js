@@ -1,8 +1,8 @@
-
-import firebase from '../firebaseApp'
+import store from 'store'
+import firebase from '../firebaseApp';
 import {useState, useEffect} from 'react';
 
-import {Link, useHistory} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom';
 
 const LogInPageComp = () => 
 {
@@ -45,11 +45,13 @@ const LogInPageComp = () =>
     }
 
     let userToLogIn = users.find(user => user.userName === userName)
-    
+
     if(userToLogIn) {
       if(userToLogIn.password === password){
-        sessionStorage["loginUserId"] = userToLogIn.id;
-        history.push(`/MainPage`)
+        sessionStorage["name"] = userToLogIn.name;
+        store.set('permissions', userToLogIn.permissions);
+        (userToLogIn.name == "sysAdmin") ? store.set('sysAdmin', true) : store.set('sysAdmin', false);
+        history.push(`/MainPage`);
       }
       
 

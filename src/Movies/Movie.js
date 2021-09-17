@@ -1,4 +1,5 @@
 import firebase from '../firebaseApp'
+import store from 'store';
 
 import { Link, useHistory } from "react-router-dom";
 
@@ -9,7 +10,7 @@ const MovieComp = (props) => {
 
   const [id, setId] = useState(props.id)
   const [movie, setMovie] = useState({})
-  const [subscriptions , setSubscribtions] = useState([])
+  const [subscriptions, setSubscribtions] = useState([])
   const [subscriptionsHeader, setSubscribtionsHeader] = useState(null)
   const [editButton, setEditButton] = useState(null)
   const [deleteButton, setDeleteButton] = useState(null)
@@ -21,34 +22,31 @@ const MovieComp = (props) => {
 
     setId(props.id)
 
-    firebase.firestore().collection('Users').doc(sessionStorage["loginUserId"]).get()
-      .then(userData => {
-        if(userData.data().permissions['Delete Movies']){
-          setDeleteButton(<input type="button" className = "low-button" value="Delete" onClick={deleteMovie} />)
-        }
-        if(userData.data().permissions['Update Movies']){
-          setEditButton(<input type="button" className = "low-button" value="Edit" onClick={editMovie} />)
-        }
+    if (store.get('permissions')['Delete Movies']) {
+      setDeleteButton(<input type="button" className="low-button" value="Delete" onClick={deleteMovie} />)
+    }
+    if (store.get('permissions')['Update Movies']) {
+      setEditButton(<input type="button" className="low-button" value="Edit" onClick={editMovie} />)
+    }
 
-        if(userData.data().permissions['View Subscriptions']){
-          setMemberPermission(true)
-        }
-    })
+    if (store.get('permissions')['View Subscriptions']) {
+      setMemberPermission(true)
+    }
 
     firebase.firestore().collection('Movies').doc(props.id).get()
       .then(movieInitial => {
         let movieData = movieInitial.data()
         movieData.id = props.id;
         movieData.image = movieInitial.data().image.original;
-        movieData.year = movieInitial.data().premiered.slice(0,4)
+        movieData.year = movieInitial.data().premiered.slice(0, 4)
         movieData.genresString = movieInitial.data().genres.toString()
         setMovie(movieData);
         setSubscribtions(movieInitial.data().subscriptions)
-        if(movieInitial.data().subscriptions.length !== 0){
-          setSubscribtionsHeader( <h4> Subscriptions </h4> )
+        if (movieInitial.data().subscriptions.length !== 0) {
+          setSubscribtionsHeader(<h4> Subscriptions </h4>)
         }
       })
-  },[props])
+  }, [props])
 
   const editMovie = () => {
     history.push("/MainPage/Movies/EditMovie/" + props.id);
@@ -58,17 +56,17 @@ const MovieComp = (props) => {
 
     let doc = firebase.firestore().collection('Movies').doc(id)
     doc.delete()
-    .then(()=> {
+      .then(() => {
         console.log(id)
         subscriptions.forEach(member => {
           firebase.firestore().collection('Members').doc(member.id).get()
-          .then(memberToDelete => {
-            let memberToDeleteData = memberToDelete.data();
-            let updatedMoviesSubscribed = memberToDeleteData.moviesSubscribed.filter(x => x.id != id)
-            memberToDeleteData.moviesSubscribed = updatedMoviesSubscribed
-            firebase.firestore().collection('Members').doc(memberToDelete.id)
-            .set(memberToDeleteData)
-          })
+            .then(memberToDelete => {
+              let memberToDeleteData = memberToDelete.data();
+              let updatedMoviesSubscribed = memberToDeleteData.moviesSubscribed.filter(x => x.id != id)
+              memberToDeleteData.moviesSubscribed = updatedMoviesSubscribed
+              firebase.firestore().collection('Members').doc(memberToDelete.id)
+                .set(memberToDeleteData)
+            })
         })
 
         alert('Deleted');
@@ -80,35 +78,35 @@ const MovieComp = (props) => {
   return (
     <div className="item">
 
-        <h3>{movie.name} , {movie.year} </h3>
+      <h3>{movie.name} , {movie.year} </h3>
 
-        <h4> Genres: {movie.genresString} </h4>
+      <h4> Genres: {movie.genresString} </h4>
 
-        <img width = "250" height = "250" src={movie.image} /> 
+      <img width="250" height="250" src={movie.image} />
 
-        {subscriptionsHeader}
+      {subscriptionsHeader}
 
-            <ul className ="MovieList">
-              {
-                subscriptions.map((item, index) => {
+      <ul className="MovieList">
+        {
+          subscriptions.map((item, index) => {
 
-                  if(memberPermission){
-                    return <li key={index}> 
-                          <Link className = "Link" to={`/MainPage/Subscriptions/SingleMember/${item.id}`}>{item.name}</Link>                            
-                             , {item.date} </li>
-                  }
-                  else{
-                    return <li key={index}> {item.name + " "} , {" " + item.date} </li>
-                  }
+            if (memberPermission) {
+              return <li key={index}>
+                <Link className="Link" to={`/MainPage/Subscriptions/SingleMember/${item.id}`}>{item.name}</Link>
+                , {item.date} </li>
+            }
+            else {
+              return <li key={index}> {item.name + " "} , {" " + item.date} </li>
+            }
 
-                })
-              }
-        
-            </ul>
+          })
+        }
 
-          {editButton}
-          {deleteButton}
-        
+      </ul>
+
+      {editButton}
+      {deleteButton}
+
     </div>
   );
 }

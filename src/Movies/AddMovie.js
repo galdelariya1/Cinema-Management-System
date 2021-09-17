@@ -17,7 +17,7 @@ const AddMovieComp = (props) =>
 
 
     firebase.firestore().collection('Movies').add(obj)
-    .then(data=>
+    .then(()=>
       {
         alert('New Movie created ! ');
         props.history.push("/MainPage/Movies");

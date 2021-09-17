@@ -1,4 +1,4 @@
-import firebase from '../firebaseApp'
+import store from 'store';
 import {useState, useEffect} from 'react';
 
 import {Route, Switch} from 'react-router-dom'
@@ -9,30 +9,24 @@ import UsersManagementComp from '../Users/UsersManegment'
 
 const MainPageComp = (props) => 
 {
-  const [loginUser, setLoginUser] = useState({})
   const [usersManagementButton, setUsersManagementButton] = useState(null)
   const [moviesButton, setMoviesButton] = useState(null)
   const [subscriptionsButton, setSubscriptionsButton] = useState(null)
   
   useEffect(() => {
 
-    firebase.firestore().collection('Users').doc(sessionStorage["loginUserId"]).get()
-      .then(userData => {
-            setLoginUser(userData.data())
+    if (store.get('sysAdmin')) {
+      setUsersManagementButton(<input type="button" className="top-button" value="Users Management" onClick={userManagement} />)
+    }
 
-            if(userData.data().userName === "sysAdmin"){
-              setUsersManagementButton(<input type="button" className = "top-button" value="Users Management" onClick={userManagement} />)
-            }
+    if (store.get('permissions')['View Movies']) {
+      setMoviesButton(<input type="button" className="top-button" value="Movies" onClick={movies} />)
+    }
 
-            if(userData.data().permissions['View Movies']){
-              setMoviesButton(<input type="button" className = "top-button" value="Movies" onClick={movies} />)
-            }
+    if (store.get('permissions')['View Subscriptions']) {
+      setSubscriptionsButton(<input type="button" className="top-button" value="Subscriptions" onClick={subscriptions} />)
+    }
 
-            if(userData.data().permissions['View Subscriptions']){
-              setSubscriptionsButton(<input type="button" className = "top-button" value="Subscriptions" onClick={subscriptions} />)
-            }
-   
-      })
   },[]) 
 
   const movies = () =>
@@ -58,7 +52,7 @@ const MainPageComp = (props) =>
   return (
     <div>
 
-      <h2> User : {loginUser.name} </h2>
+      <h2> User : {sessionStorage["name"]} </h2>
 
       {moviesButton}
       {subscriptionsButton}

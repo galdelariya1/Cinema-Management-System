@@ -24,12 +24,11 @@ const AddUserComp = (props) =>
     let obj = {name, userName, "password" : "", sessionTimeOut, createdDate : today, permissions}
 
     firebase.firestore().collection('Users').add(obj)
-    .then(()=>
-      {
+    .then( () => {
         alert('New User created ! ');
         props.history.push("/MainPage/UsersManagement");
       })
-    
+      
   }
 
   const cancel = () =>

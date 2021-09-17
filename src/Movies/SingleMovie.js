@@ -1,5 +1,5 @@
 import firebase from '../firebaseApp'
-
+import store from 'store';
 import { Link, useHistory } from "react-router-dom";
 
 import { useState, useEffect } from 'react'
@@ -19,19 +19,17 @@ const MovieComp = (props) => {
 
   useEffect(() => {
 
-    firebase.firestore().collection('Users').doc(sessionStorage["loginUserId"]).get()
-      .then(userData => {
-        if(userData.data().permissions['Delete Movies']){
-          setDeleteButton(<input type="button" className = "low-button" value="Delete" onClick={deleteMovie} />)
-        }
-        if(userData.data().permissions['Update Movies']){
-          setEditButton(<input type="button" className = "low-button" value="Edit" onClick={editMovie} />)
-        }
 
-        if(userData.data().permissions['View Subscriptions']){
-          setMemberPermission(true)
-        }
-    })
+    if (store.get('permissions')['Delete Movies']) {
+      setDeleteButton(<input type="button" className="low-button" value="Delete" onClick={deleteMovie} />)
+    }
+    if (store.get('permissions')['Update Movies']) {
+      setEditButton(<input type="button" className="low-button" value="Edit" onClick={editMovie} />)
+    }
+
+    if (store.get('permissions')['View Subscriptions']) {
+      setMemberPermission(true)
+    }
 
     firebase.firestore().collection('Movies').doc(id).get()
       .then(movieInitial => {

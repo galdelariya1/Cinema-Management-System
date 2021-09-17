@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react'
 import firebase from '../firebaseApp'
 import UserComp from './User'
 
-
-
 const AllUsersComp = () => {
   
   const [users, setUsers] = useState([])
